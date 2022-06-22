@@ -2,26 +2,27 @@ function mean_peak = plot_mean_peak()
 
 % D = dir('C:\Users\ethie\OneDrive\Documents\temp_data\170\');
 
-folder = uigetdir('C:\Users\ethie\OneDrive\Documents\', 'Choose Rat');
-[filepath,name,ext] = fileparts(folder);
+folder = uigetdir('C:\Users\ethie\OneDrive\Documents\', 'Choose Rat');      % go on the forlder and choose rat
+[filepath,name,ext] = fileparts(folder);                                    % take the name of the folder which is the name of the rat
 
-D = dir([folder '\*.mat']);
+D = dir([folder '\*.mat']);                                                 % take only .mat folder for D
 
-numfich = size(D,1);
+numfich = size(D,1);                                                        %  
 
-mean_peak = nan(numfich,1);
+mean_peak = nan(numfich,1);                                                 % 
 
 for i = 1:numfich
     load(fullfile(D(i).folder,D(i).name));
     
-    mean_peak(i) = trial_table.Properties.CustomProperties.mean_peak;
+    mean_peak(i) = trial_table.Properties.CustomProperties.mean_peak;       % permet de recuperer le mean peak dans les custom properties
 end
 
-figure
-plot (mean_peak)
-title(name)
-xlabel('Number of sessions') 
+figure                                                                      % new figure
+plot (mean_peak,'LineWidth',1.5 )
+title(name)                                                                 % name of figure
+xlabel('Number of sessions')                                                % names of axes
 ylabel('Mean peak angle (deg)')
+ylim ([0 80])
 
 
 % 
@@ -30,15 +31,6 @@ ylabel('Mean peak angle (deg)')
 % B=T(:,1)
 % load(D.name(i));
 % %mean_angle = trial_table.Properties.CustomProperties.mean_peak;
-%     
-%  
-%     
-%   % figure
-%   % plot(
-%     
-%   
-%    % 
-% end
 
 %file = D.name
 %data = load(strcat(D,D.name(i)));

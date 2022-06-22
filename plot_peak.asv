@@ -1,0 +1,36 @@
+function peak = plot_peak()
+
+
+folder = uigetdir('C:\Users\ethie\OneDrive\Documents\temp_data\', 'Choose Rat');
+[filepath,name] = fileparts(folder);
+
+
+D = dir([folder '\*.mat']);
+
+numfich = size(1,1);
+
+peak = nan(numfich,1);
+
+for i = 1:numfich
+    load(fullfile(D(i).folder,D(i).name));
+
+
+      T= size(trial_table,1);
+
+   % for i= 1:T
+
+    peak = trial_table.peak; 
+
+          
+    figure 
+    plot(peak,'LineWidth',1.5 )
+    title(name)
+    xlabel('Number of sessions')
+    ylabel('peak and go')
+    ylim([30 100])
+
+      end
+
+    
+
+   end
